@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         test: ${{ fromJSON(needs.collect-tests.outputs.test-dirs) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: docker.io/zmkfirmware/zmk-build-arm:3.0
     steps:
