@@ -27,7 +27,7 @@ jobs:
         run: npm run prettier:check
         working-directory: app
   validate-metadata:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: docker.io/zmkfirmware/zmk-dev-arm:3.0
     steps:
