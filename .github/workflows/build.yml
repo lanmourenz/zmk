@@ -105,7 +105,7 @@ jobs:
             }
   compile-matrix:
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [core-coverage, board-changes, nightly]
     outputs:
       include-list: ${{ steps.compile-list.outputs.result }}
@@ -145,7 +145,7 @@ jobs:
             }));
   core-coverage:
     if: ${{ needs.get-changed-files.outputs.core-changes == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: get-changed-files
     outputs:
       core-include: ${{ steps.core-list.outputs.result }} 
@@ -174,7 +174,7 @@ jobs:
             return [...include, ...coreCoverage.include];
   board-changes:
     if: ${{ needs.get-changed-files.outputs.board-changes == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [get-grouped-hardware, get-changed-files]
     outputs:
       boards-include: ${{ steps.boards-list.outputs.result }}
@@ -255,7 +255,7 @@ jobs:
             }))).flat();
   nightly:
     if: ${{ github.event_name == 'schedule' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: get-grouped-hardware
     outputs:
       nightly-include: ${{ steps.nightly-list.outputs.result }}
@@ -299,7 +299,7 @@ jobs:
 
             return [...includeOnboard, ...includeInterconnect];
   get-grouped-hardware:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       organized-metadata: ${{ steps.organize-metadata.outputs.result }}
     steps:
@@ -377,7 +377,7 @@ jobs:
           result-encoding: string
   get-changed-files:
     if: ${{ github.event_name != 'schedule' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       changed-files: ${{ steps.changed-files.outputs.all }}
       board-changes: ${{ steps.board-changes.outputs.result }}
